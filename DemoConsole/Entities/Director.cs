@@ -6,21 +6,14 @@ using System.Text;
 
 namespace DemoConsole.Entities
 {
-    class Actor
+    class Director
     {
         public int Id { get; set; }
 
-        [ConcurrencyCheck]
+        [Required]
         [Column("FullName", TypeName = "nvarchar(100)")]
         public string Name { get; set; }
 
-        [Column(TypeName = "tinyint")]
-        public int Age { get; set; }
-
-        [NotMapped]
-        public bool AcademyWinner => Awards?.Count > 0;
-
-        public ICollection<Award> Awards { get; set; }
-        public ICollection<ActorMovie> ActorMovies { get; set; }
+        public Movie Movie { get; set; }
     }
 }

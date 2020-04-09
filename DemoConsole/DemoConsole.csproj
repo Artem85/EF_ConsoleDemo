@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200409210220_DataSeeding.cs" />
+    <Compile Remove="Migrations\20200409210220_DataSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20200409210422_DataSeeding.cs" />
+    <Compile Remove="Migrations\20200409210422_DataSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20200409210541_DataSeeding.cs" />
+    <Compile Remove="Migrations\20200409210541_DataSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20200409210942_DataSeeding.cs" />
+    <Compile Remove="Migrations\20200409210942_DataSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20200409211821_DbTablesAdded.cs" />
+    <Compile Remove="Migrations\20200409211821_DbTablesAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200409214641_MoviesDataSeeding.cs" />
+    <Compile Remove="Migrations\20200409214641_MoviesDataSeeding.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
