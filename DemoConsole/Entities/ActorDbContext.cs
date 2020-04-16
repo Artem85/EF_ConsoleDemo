@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 
 namespace DemoConsole.Entities
 {
@@ -11,7 +13,7 @@ namespace DemoConsole.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=ActorDb;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer(@$"Server=(localdb)\MSSQLLocalDB;Database=ActorDb;Trusted_Connection=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

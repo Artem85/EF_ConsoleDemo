@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DemoConsole
 {
@@ -13,14 +15,49 @@ namespace DemoConsole
         {
             using (var context = new ActorDbContext())
             {
+                context.Database.EnsureDeleted();
                 context.Database.Migrate();
 
-                foreach (var Actor in context.Actors.Include("Awards"))
+
+                var movie = context.Movies.FirstOrDefault(m => m.Title.Contains("Fiction"));
+                movie.Title = "Criminalnoe Chtivo";
+
+                var newAwardList = new Award[]
                 {
-                    Console.WriteLine($"Name: {Actor.Name},\t\t" +
-                                        $"Age: {Actor.Age},\t\t" +
-                                        $"AcademyWinner: {Actor.AcademyWinner}");
-                }
+                    new Award {
+                        Title = AwardType.Oscar,
+                        DeliveryYear = 2017
+                    },
+                    new Award {
+                        Title = AwardType.Oscar,
+                        DeliveryYear = 2016
+                    }
+                };
+
+                var newActor = new Actor
+                {
+                    Name = "Tom Cruz",
+                    Age = 44,
+                    Awards = newAwardList
+                };
+
+
+                newActor.ActorMovies = new List<ActorMovie>
+                {
+                    new ActorMovie {
+                        Actor = newActor,
+                        Movie = movie
+                    }
+                };
+
+                context.Actors.Add(newActor);
+
+                context.SaveChanges();
+
+
+                context.Actors.Remove(context.Actors.FirstOrDefault(a => a.Name == "Tom Cruz"));
+
+                context.SaveChanges();
             }
         }
     }
